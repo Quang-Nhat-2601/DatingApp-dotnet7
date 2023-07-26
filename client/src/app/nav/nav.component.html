@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">Dating App</a>
+
+    <!-- In here, we using Angular structural directive -->
+    <!-- if "loggegIn == false", `ul` tag will not appear -->
+    <ul class="navbar-nav me-auto mb-2 mb-md-0" *ngIf="currentUser$ | async">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">Matches</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Lists</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">Messages</a>
+      </li>
+    </ul>
+
+    <div class="dropdown" *ngIf="currentUser$ | async" dropdown>
+      <a class="dropdown-toggle text-light" dropdownToggle>Welcome user</a>
+      <div class="dropdown-menu" *dropdownMenu>
+        <a href="#" class="dropdown-item">Edit Profile</a>
+        <a href="#" class="dropdown-item" (click)="logout()">Logout</a>
+      </div>
+    </div>
+
+    <form
+      #loginForm="ngForm"
+      class="d-flex"
+      (ngSubmit)="login()"
+      autocomplete="off"
+      *ngIf="!(currentUser$ | async)"
+    >
+      <input
+        name="username"
+        [(ngModel)]="model.username"
+        class="form-control me-2"
+        type="text"
+        placeholder="UserName"
+      />
+      <input
+        name="password"
+        [(ngModel)]="model.password"
+        class="form-control me-2"
+        type="password"
+        placeholder="Password"
+      />
+      <button class="btn btn-outline-success" type="submit">LOGIN</button>
+    </form>
+    <!-- [(ngModel)] is used to create two-way data binding-->
+  </div>
+</nav>
+
+<!-- but it does not persist because when will refresh the browser
+the component will be recreated -->
