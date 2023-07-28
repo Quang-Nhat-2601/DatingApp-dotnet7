@@ -35,7 +35,6 @@ export class AccountService {
           this.currentUserSource.next(user);
           console.log(this.currentUserSource);
         }
-        return user;
       })
     )
   }

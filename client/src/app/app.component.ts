@@ -8,6 +8,7 @@ import { User } from './_models/user';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent implements OnInit {
   title: string = 'client';
   users: any;
