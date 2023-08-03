@@ -22,7 +22,7 @@ namespace API.Controllers
         }
 
         [HttpPost("register")] // url: api/account/register
-        public async Task<ActionResult<UserDTO>> Register(RegisterAccountDTO regis_acc) {
+        public async Task<ActionResult<UserDTO>> Register(RegisterDTO regis_acc) {
             if (await AccountExist(regis_acc.UserName)) return BadRequest("User is existed");
 
             using var hmac = new HMACSHA512();
